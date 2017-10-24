@@ -14,7 +14,7 @@ class MainPage(webapp2.RequestHandler):
     def get(self):  #handles GET requests
         # this method returns a JSON object with the list of signers
         self.response.headers['Content-Type'] = 'application/json'  # http header with content type
-        self.response.write(json.JSONEncoder)
+        self.response.write(json.JSONEncoder.encode(self))
 
     def post(self): #handles POST requests
         logging.info("POST - got post") # some debugging
