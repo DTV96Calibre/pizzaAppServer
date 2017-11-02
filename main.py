@@ -3,6 +3,7 @@ from google.appengine.ext import ndb # needed for db calls
 import webapp2  # webapp2 framework
 import logging  # for debugging
 import json     # used to package information for sending/receiving
+import pizza
 
 # a single DB entry
 class NameList(ndb.Model):
@@ -13,14 +14,15 @@ class NameList(ndb.Model):
 class MainPage(webapp2.RequestHandler):
     def get(self):  #handles GET requests
         # this method returns a JSON object with the list of signers
-        # self.response.headers['Content-Type'] = 'application/json'  # http header with content type
-        # self.response.write(json.JSONEncoder.encode(self))
-        self.response.headers['Content-Type'] = 'text/html'
-        self.response.write('<html><center<List of names<table>')   #HTML response
-        query = ndb.gql("SELECT name, date FROM NameList ORDER BY date;")   # GQL query; can also use other query method
-        for entry in query:
-            self.response.write('<tr><td>' + entry.name + '</td><td>' + entry.date.isoformat() + '</td></tr>')
-        self.response.write('<table></html>')   #close off HTML table
+        self.response.headers['Content-Type'] = 'application/json'  # http header with content type
+        self.response.write(pizza.Pizza().toJSON())
+
+        #self.response.headers['Content-Type'] = 'text/html'
+        #self.response.write('<html><center<List of names<table>')   #HTML response
+        #query = ndb.gql("SELECT name, date FROM NameList ORDER BY date;")   # GQL query; can also use other query method
+        #for entry in query:
+        #    self.response.write('<tr><td>' + entry.name + '</td><td>' + entry.date.isoformat() + '</td></tr>')
+        #self.response.write('<table></html>')   #close off HTML table
 
     def post(self): #handles POST requests
         logging.info("POST - got post") # some debugging
