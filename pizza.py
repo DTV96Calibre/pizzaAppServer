@@ -1,3 +1,4 @@
+import json as JSON
 NUM_TOPPINGS = 3
 
 class Pizza:
@@ -18,8 +19,37 @@ class Pizza:
         json += "\n    ]\n  }\n}"
         return json
 
-def main():
-    pizza = Pizza()
-    print(pizza.toJSON())
+    def fromJSON(self, json): # json is a json formatted string
+        parsedObject = JSON.loads(json) # JSON is a library
+        # print(parsedObject)
+        attributeDict = parsedObject["pizza"]
+        self.name = attributeDict["name"]
+        self.size = attributeDict["size"]
+        self.toppings = attributeDict["toppings"]
+        self.crust = attributeDict["crust"]
 
-main()
+
+
+
+def test():
+    pizza = Pizza()
+    pizza.size = 100
+    pizza.name = "Success"
+    pizza.toppings = [True, False, True]
+    pizza.crust = 50
+    pizzaJSON = pizza.toJSON()
+    #print(pizzaJSON)
+    pizzaB = Pizza()
+    pizzaB.fromJSON(pizzaJSON)
+    pizzaBJSON = pizzaB.toJSON()
+    #print(pizzaBJSON)
+    #if (pizzaJSON == pizzaBJSON):
+    #    #print("Success")
+    #else:
+     #   print("Pizza toJSON fromJSON test failed!")
+
+    assert (pizzaJSON == pizzaBJSON) , ("Pizza toJSON fromJSON test failed!")
+
+
+
+test()
