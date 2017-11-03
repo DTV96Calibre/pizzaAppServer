@@ -28,9 +28,6 @@ class Pizza:
         self.toppings = attributeDict["toppings"]
         self.crust = attributeDict["crust"]
 
-
-
-
 def test():
     pizza = Pizza()
     pizza.size = 100
@@ -38,18 +35,10 @@ def test():
     pizza.toppings = [True, False, True]
     pizza.crust = 50
     pizzaJSON = pizza.toJSON()
-    #print(pizzaJSON)
     pizzaB = Pizza()
     pizzaB.fromJSON(pizzaJSON)
     pizzaBJSON = pizzaB.toJSON()
-    #print(pizzaBJSON)
-    #if (pizzaJSON == pizzaBJSON):
-    #    #print("Success")
-    #else:
-     #   print("Pizza toJSON fromJSON test failed!")
 
     assert (pizzaJSON == pizzaBJSON) , ("Pizza toJSON fromJSON test failed!")
-
-
 
 test()

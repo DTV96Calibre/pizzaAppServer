@@ -1,4 +1,4 @@
-from google.appengine.ext import ndb # needed for db calls
+#from google.appengine.ext import ndb # needed for db calls
 
 import webapp2  # webapp2 framework
 import logging  # for debugging
@@ -6,9 +6,9 @@ import json     # used to package information for sending/receiving
 import pizza
 
 # a single DB entry
-class NameList(ndb.Model):
-    name = ndb.StringProperty()  # signer's name
-    date = ndb.DateTimeProperty(auto_now_add=True)  # auto-populated; when they signed
+# class NameList(ndb.Model):
+#     name = ndb.StringProperty()  # signer's name
+#     date = ndb.DateTimeProperty(auto_now_add=True)  # auto-populated; when they signed
 
 # for webapp2: a set of handlers
 class MainPage(webapp2.RequestHandler):
@@ -33,3 +33,10 @@ class MainPage(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainPage),
 ], debug=True)
+
+def main():
+    from paste import httpserver
+    httpserver.serve(app, host='127.0.0.1', port='8080')
+
+if __name__ == '__main__':
+    main()
