@@ -28,6 +28,9 @@ $ pip install webapp2
 ## Execution
 `$ python main.py`
 
+The server accessible by sending requests to `127.0.0.1`. Navigating a browser
+to this address should verify the server is running.
+
 # Design
 The server uses webapp2, a general purpose web framework.
 
