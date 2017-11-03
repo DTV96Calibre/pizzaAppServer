@@ -18,8 +18,8 @@ class Pizza:
         json += "\n    ]\n  }\n}"
         return json
 
-def main():
+def test():
     pizza = Pizza()
     print(pizza.toJSON())
 
-main()
+test()
